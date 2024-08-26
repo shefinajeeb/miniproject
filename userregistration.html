@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .login-container {
+            max-width: 400px;
+            margin: auto;
+            margin-top: 100px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="login-container">
+            <h2 class="text-center mb-4">User Register</h2>
+            {% for msg in messages %}
+                <h6 style="color: red; text-align: center;background-color: rgb(212, 218, 176);
+                padding-top: 11px;padding-bottom: 11px;border-radius: 10px;">{{msg}}</h6>
+            {% endfor %}
+   
+
+            <form method="POST" enctype="multipart/form-data" id="profileForm">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="username">Username:</label>
+                    <input type="text" class="form-control" name="username" id="username" placeholder="Enter your username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Full Name:</label>
+                    <input type="text" class="form-control" name="name" id="name" placeholder="Enter your Company Name" required>
+                </div>
+               
+                <div class="form-group">
+                    <label for="password">Email:</label>
+                    <input type="email" class="form-control" name="email" placeholder="Enter your email Id" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Village:</label>
+                    <input type="text" class="form-control" name="village"  placeholder="Enter your village " required>
+                </div>
+                <div class="form-group">
+                    <label for="selectInput">Nearby Relief Camp:</label>
+                    <select class="form-control" name="relief" id="selectInput" required>
+                        <option value="">-- Please choose an option --</option>
+                        <option value="GUPS,Pottassery">GUPS,Pottassery</option>
+                        <option value="GLPS,Thirukkalur">GLPS,Thirukkalur</option>
+                        <option value="GHS,Manarkkad">GHS,Manarkkad</option>
+                        <option value="Deshabandhu HS,Thachampara">Deshabandhu HS,Thachampara</option>
+                        <option value="GUPS,Vazhampuram">GUPS,Vazhampuram</option>
+                        <option value="GVHSS,Karakurissi">GVHSS,Karakurissi</option>
+                        <option value="GLPS,Kumarputhur">GLPS,Kumarputhur</option>
+                        <option value="Sabari HS ,Pallikkurup">Sabari HS ,Pallikkurup</option>
+                        <!-- Add more options as needed -->
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="password">Address:</label>
+                    <input type="text" class="form-control" name="address"  placeholder="Enter your Address" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Phone:</label>
+                    <input type="number" class="form-control" name="phone" id="phone" placeholder="Enter your Phone Number" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Photo:</label>
+                    <input type="file" class="form-control" name="img"  placeholder="Enter your Place" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" name="password" class="form-control" id="password" placeholder="Enter your password" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">confirm Password:</label>
+                    <input type="password" name="password1" class="form-control" id="password" placeholder="Enter your confirm password" required>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-block mt-4">Register</button>
+            </form>
+            <div class="text-center mt-3">
+                <p>Already have an account? <a href="{% url 'user_login' %}">Login here</a></p>
+            </div>
+        </div>
+    </div>
+    <script>
+   document.getElementById("profileForm").addEventListener("submit", function(event) {
+       var name = document.getElementById("name").value.trim();
+       var phone = document.getElementById("phone").value.trim();
+       
+
+       // Name validation: Characters and spaces only
+       if (!/^[a-zA-Z\s]+$/.test(name)) {
+           alert("Please enter a valid name with characters and spaces only.");
+           event.preventDefault();
+           return false;
+       }
+
+       // Phone number validation: Exactly 10 digits
+       if (!/^\d{10}$/.test(phone)) {
+           alert("Please enter a valid 10-digit phone number.");
+           event.preventDefault();
+           return false;
+       }
+   
+   });
+</script>
+
+    <!-- Bootstrap JS and Popper.js (required for Bootstrap) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>
+
