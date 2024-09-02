@@ -1,0 +1,47 @@
+{% extends 'chief/base.html' %}
+{% load static %}
+{% block content %}
+<!-- <div class="full_container">
+         <div class="container">
+            <div class="center verticle_center full_height"> -->
+               <div class="login_section" style="margin-top: 20px;">
+                  <div class="logo_login">
+                     <div class="center">
+                        <h3 style="color: aliceblue;">Update Water Status</h3>
+                     </div>
+                  </div>
+                  <div class="login_form">
+                    <form method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <fieldset>
+                            <div class="field">
+                              <label class="label_field">Inflow </label>
+                              <input type="text" name="inflow" value="{{update.inflow}}" placeholder="Enter inflow (in cf)"/>
+                           </div>   
+                           <div class="field">
+                              <label class="label_field">Outflow </label>
+                              <input type="text" name="outflow" value="{{update.outflow}}" placeholder="Enter outflow (in cf)"/>
+                           </div>  
+                           <div class="field">
+                              <label class="label_field">reserved </label>
+                              <input type="text" name="unreserved" value="{{update.unreserved}}" placeholder="Enter reserved (in cubic meters)"/>
+                           </div>  
+                           <div class="field">
+                              <label class="label_field">Current Water Level </label>
+                              <input type="text" name="level" value="{{update.level}}" placeholder="Enter current water level (e.g., in meters or feet)"/>
+                           </div>               
+                           <div class="field margin_0">
+                              <label class="label_field hidden">hidden label</label>
+                              <button class="main_bt" type="submit">Update</button>
+                           </div>
+                        </fieldset>
+                     </form>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+Inflow and Outflow are in cubic-feet per second
+{% endblock %}
