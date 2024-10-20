@@ -1,0 +1,87 @@
+{% extends 'chief/base.html' %}
+{% load static %}
+{% block content %}
+<div class="midde_cont">
+                  <div class="container-fluid">
+                     <div class="row column_title">
+                        <div class="col-md-12">
+                           <div class="page_title">
+                              <h2>Manage Water Status</h2>
+                           </div>
+                        </div>
+                     </div>
+                     <!-- row -->
+                     <div class="row column1">
+                        <div class="col-md-12">
+                           <div class="white_shd full margin_bottom_30">
+                              <div class="full graph_head">
+                                 <div class="heading1 margin_0">
+                                    <h2>View Water Status <small></small></h2>
+                                 </div>
+                              </div>
+                              <div class="full price_table padding_infor_info">
+                                 <div class="row">
+                                    <div class="col-lg-12">
+                                       <div class="table-responsive-sm">
+                                        {% for msg in messages %}
+                                            <h6 style="color: red; text-align: center;
+                                            padding-top: 11px;padding-bottom: 11px;border-radius: 10px;">{{msg}}</h6>
+                                        {% endfor %}
+                                          <table class="table table-striped projects">
+                                             <thead class="thead-dark">
+                                                <tr>
+                                                <th>Inflow</th>
+                                                
+                                                    <th>Outflow</th>
+                                       
+                                                   <th>  Reserved</th>
+                                        
+                                          
+                                                   <th >Water Level</th>
+
+                                                   <th >Date</th>
+                                                   <th ></th>
+                                                   <th ></th>
+                                                   
+                                                   
+                                                </tr>
+                                             </thead>
+                                             <tbody>
+                                             {% for i in view %}
+                                                <tr>
+                                                    <td>{{i.inflow}}</td>
+                                                    <td>{{i.outflow}}</td>
+                                                
+                                                   <td>{{i.unreserved}}</td>
+                                                   <td>{{i.level}}</td>
+                                                   <td>{{i.date}}</td>
+                                                   <td><a href="{% url 'update_chief_water' i.pk %}" class="btn btn-success">Update</a></td>
+                                                   <td><a href="{% url 'delete_chief_water' i.pk %}" class="btn btn-danger">Delete</a></td>
+                                                   
+                                                    
+                                                </tr>
+                                            {% endfor %}
+                                          
+                                                
+                                               
+                                           
+                                             
+                                              
+                                             </tbody>
+                                          </table>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <!-- end row -->
+                     </div>
+                      <p>Inflow and Outflow values are in <span style="color:blue;font-weight:bold;">cubic-feet/second.</span></p> 
+                  </div>
+                  <!-- end dashboard inner -->
+                 
+   
+               </div>
+   
+{% endblock %}
